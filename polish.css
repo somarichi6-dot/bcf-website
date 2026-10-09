@@ -1,0 +1,326 @@
+/* ==========================================
+   BCF POLISH LAYER
+   Loaded AFTER style.css. Delete the <link> to undo.
+========================================== */
+
+:root {
+    --gold: #d9a066;
+    --gold-soft: rgba(217, 160, 102, 0.35);
+    --maroon: #4a0f0f;
+    --maroon-deep: #2b0707;
+    --navy: #0b1f3a;
+    --cream: #f8f7f3;
+}
+
+/* ---------- Typography ---------- */
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+}
+
+.section-heading h2 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    letter-spacing: -0.5px;
+}
+
+.small-title {
+    position: relative;
+    padding-left: 44px;
+    font-size: 12px;
+    letter-spacing: 3.5px;
+}
+
+.small-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.hero .small-title,
+#contact .small-title,
+#prayer .small-title {
+    padding-left: 0;
+}
+
+.hero .small-title::before,
+#contact .small-title::before,
+#prayer .small-title::before {
+    display: none;
+}
+
+/* ---------- Navigation ---------- */
+header {
+    background: rgba(255, 255, 255, 0.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 0;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.25s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: #8a5a32;
+}
+
+/* ---------- Buttons ---------- */
+.btn,
+.button {
+    border-radius: 999px;
+    padding: 15px 34px;
+    letter-spacing: 0.4px;
+    box-shadow: 0 8px 22px rgba(138, 90, 50, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.btn:hover,
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(138, 90, 50, 0.45);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    min-height: 100vh;
+}
+
+.hero-overlay {
+    background:
+        radial-gradient(circle at 20% 30%, rgba(217, 160, 102, 0.18), transparent 45%),
+        linear-gradient(160deg, rgba(43, 7, 7, 0.92), rgba(74, 15, 15, 0.7));
+}
+
+.hero h1 {
+    font-size: clamp(40px, 7vw, 78px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-text {
+    font-size: clamp(16px, 2vw, 20px);
+}
+
+.hero-scroll i {
+    animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* ---------- Section backgrounds: soft depth ---------- */
+#programs {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(138, 90, 50, 0.22), transparent 45%),
+        #000000;
+}
+
+#departments {
+    background:
+        radial-gradient(circle at 5% 100%, rgba(138, 90, 50, 0.2), transparent 45%),
+        #000000;
+}
+
+#events,
+#gallery {
+    background:
+        radial-gradient(circle at 80% 0%, rgba(217, 160, 102, 0.12), transparent 50%),
+        var(--navy);
+}
+
+#join {
+    background:
+        radial-gradient(circle at 50% 120%, rgba(217, 160, 102, 0.15), transparent 55%),
+        var(--navy);
+}
+
+/* ---------- Cards ---------- */
+.program-card,
+.department-card,
+.leader-card,
+.upcoming-card {
+    border-radius: 16px;
+}
+
+#programs .program-card,
+.department-card {
+    border: 1px solid rgba(217, 160, 102, 0.2);
+    border-bottom: 4px solid var(--gold);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+#programs .program-card:hover,
+.department-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 44px rgba(217, 160, 102, 0.22);
+    border-color: var(--gold-soft);
+    border-bottom-color: var(--gold);
+}
+
+.dept-icon {
+    box-shadow: 0 0 0 6px rgba(217, 160, 102, 0.18);
+}
+
+#resources .program-card {
+    border-radius: 16px;
+    border: 0;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+}
+
+.leader-card {
+    border: 0;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+    border-top: 4px solid var(--gold);
+    transition: transform 0.35s ease;
+}
+
+.leader-card:hover {
+    transform: translateY(-6px);
+}
+
+.leader-card h3 {
+    font-size: 20px;
+}
+
+.upcoming-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--gold-soft);
+}
+
+.upcoming-card img {
+    border-radius: 12px;
+}
+
+/* ---------- Events & gallery images ---------- */
+.event-card {
+    border-top: 0;
+    padding: 0;
+}
+
+.event-card h3 {
+    font-size: 26px;
+    margin-top: 18px;
+}
+
+.event-card img {
+    border-radius: 16px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover img {
+    transform: scale(1.02);
+}
+
+.gallery-item {
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-item img {
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* ---------- Social ---------- */
+.social-logos img {
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+}
+
+/* ---------- Contact ---------- */
+#contact {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(217, 160, 102, 0.14), transparent 55%),
+        var(--maroon-deep);
+}
+
+#contact .enquiry-person {
+    display: inline-block;
+    margin: 0 18px 20px;
+    padding: 18px 28px;
+    min-width: 220px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: #0a0a0a;
+    border-top: 3px solid var(--gold);
+}
+
+footer h3 {
+    font-size: 22px;
+}
+
+/* ---------- Scroll reveal (works with polish.js) ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+
+.reveal.in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Mobile touches ---------- */
+@media (max-width: 600px) {
+    .small-title {
+        padding-left: 36px;
+        letter-spacing: 2.5px;
+    }
+
+    .small-title::before {
+        width: 22px;
+    }
+
+    #contact .enquiry-person {
+        display: block;
+        margin: 0 0 16px;
+    }
+
+    .btn,
+    .button {
+        padding: 14px 28px;
+    }
+}

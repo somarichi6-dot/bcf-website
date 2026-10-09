@@ -1,0 +1,224 @@
+/* ==========================================
+   BCF BOLD COLOUR LAYER
+   Load AFTER style.css and polish.css.
+   Palette: black + crimson + gold, with midnight blue.
+   Delete the <link> to undo.
+========================================== */
+
+:root {
+    --gold: #f2b84b;
+    --gold-deep: #d99a2b;
+    --gold-soft: rgba(242, 184, 75, 0.35);
+    --crimson: #8f1022;
+    --crimson-deep: #3b050c;
+    --ink: #0a0507;
+    --midnight: #070d1c;
+    --charcoal: #15151b;
+}
+
+body.home-page {
+    background: var(--ink);
+}
+
+/* ---------- Navigation: keeps a white bar (safe for your logo), with a gold edge ---------- */
+header {
+    border-bottom: 3px solid var(--gold);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--crimson);
+}
+
+.nav-links a::after {
+    background: var(--gold);
+}
+
+/* ---------- Gold buttons ---------- */
+.btn,
+.button {
+    background: linear-gradient(135deg, #f8cd6e, var(--gold-deep));
+    color: #1a0505;
+    box-shadow: 0 10px 28px rgba(242, 184, 75, 0.35);
+}
+
+.btn:hover,
+.button:hover {
+    background: linear-gradient(135deg, #ffd983, #e6a732);
+    box-shadow: 0 14px 34px rgba(242, 184, 75, 0.5);
+}
+
+/* ---------- Labels and headings ---------- */
+.home-page section .small-title {
+    color: var(--gold) !important;
+}
+
+.small-title::before {
+    background: var(--gold);
+}
+
+.home-page .section-heading h2 {
+    background: linear-gradient(90deg, #ffffff 40%, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    background-color: var(--ink);
+}
+
+.hero-overlay {
+    background:
+        radial-gradient(circle at 78% 22%, rgba(242, 184, 75, 0.25), transparent 42%),
+        linear-gradient(160deg, rgba(10, 3, 5, 0.94) 10%, rgba(143, 16, 34, 0.78));
+}
+
+.hero h1 {
+    color: #ffffff;
+}
+
+/* ---------- Section backgrounds ---------- */
+#about {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(143, 16, 34, 0.35), transparent 50%),
+        var(--ink);
+}
+
+#programs {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(143, 16, 34, 0.4), transparent 50%),
+        #000000;
+}
+
+#events {
+    background:
+        radial-gradient(circle at 85% 0%, rgba(242, 184, 75, 0.14), transparent 50%),
+        var(--midnight);
+}
+
+#departments {
+    background:
+        radial-gradient(circle at 5% 100%, rgba(242, 184, 75, 0.12), transparent 50%),
+        #000000;
+}
+
+#leadership {
+    background:
+        radial-gradient(circle at 80% 0%, rgba(242, 184, 75, 0.18), transparent 45%),
+        linear-gradient(135deg, #6d0b1a, var(--crimson-deep));
+}
+
+#gallery {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(242, 184, 75, 0.12), transparent 50%),
+        var(--midnight);
+}
+
+#resources {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(143, 16, 34, 0.3), transparent 55%),
+        var(--ink);
+}
+
+#join {
+    background:
+        radial-gradient(circle at 50% 130%, rgba(242, 184, 75, 0.22), transparent 55%),
+        linear-gradient(135deg, #6d0b1a, var(--crimson-deep));
+}
+
+#contact {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(143, 16, 34, 0.35), transparent 55%),
+        #000000;
+}
+
+/* ---------- Cards ---------- */
+#programs .program-card {
+    background: linear-gradient(160deg, #8f1022, #2c0509);
+    border: 1px solid rgba(242, 184, 75, 0.25);
+    border-bottom: 4px solid var(--gold);
+}
+
+#programs .program-card strong {
+    color: var(--gold);
+}
+
+.department-card {
+    background: linear-gradient(160deg, #1c1c24, #0c0c10);
+    border: 1px solid rgba(242, 184, 75, 0.22);
+    border-bottom: 4px solid var(--gold);
+}
+
+.department-card small {
+    color: var(--gold);
+}
+
+.dept-icon {
+    background: linear-gradient(135deg, #f8cd6e, var(--gold-deep));
+    color: #1a0505;
+    box-shadow: 0 0 0 6px rgba(242, 184, 75, 0.18);
+}
+
+.leader-card {
+    background: linear-gradient(160deg, #1c1c24, #0c0c10);
+    color: #f8f7f3;
+    border-top: 4px solid var(--gold);
+}
+
+.leader-card h3 {
+    color: #ffffff;
+}
+
+.leader-card p {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* Resources cards: from white to dark glass */
+#resources .program-card {
+    background: linear-gradient(160deg, #1c1c24, #0c0c10);
+    color: #f8f7f3;
+    border: 1px solid rgba(242, 184, 75, 0.22);
+    border-bottom: 4px solid var(--gold);
+}
+
+#resources .program-card h3 {
+    color: #ffffff;
+}
+
+#resources .program-card p {
+    color: #d9d4cc;
+}
+
+.upcoming-card {
+    border-color: var(--gold-soft);
+}
+
+.upcoming-card i {
+    color: var(--gold);
+}
+
+.coming-soon {
+    background: linear-gradient(135deg, #f8cd6e, var(--gold-deep));
+    color: #1a0505;
+}
+
+.event-card {
+    color: #f8f7f3;
+}
+
+/* ---------- Contact and footer ---------- */
+#contact .enquiry-person a {
+    color: var(--gold);
+}
+
+#contact .enquiry-person {
+    border-color: var(--gold-soft);
+}
+
+footer {
+    background: #000000;
+    border-top: 3px solid var(--gold);
+}
