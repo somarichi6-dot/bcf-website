@@ -1,0 +1,919 @@
+/* ==========================================
+   BCF LOGO-MATCHED LOOK: black, white and grey,
+   with the bronze of the logo's cross as the only accent.
+   Load AFTER style.css and polish.css (instead of bold.css).
+   Delete the <link> to undo.
+========================================== */
+
+:root {
+    --ink: #0a0a0a;
+    --char: #141414;
+    --graphite: #1f1f1f;
+    --silver: #a2a2a2;          /* the grey of the logo */
+    --paper: #f4f4f2;
+    --mist: #e8e8e6;
+    --bronze: #a8825a;          /* the cross, slightly lifted */
+    --bronze-light: #d9b27c;    /* for text and glows on black */
+    --bronze-deep: #7d5f3d;     /* for text on light sections */
+    --bronze-soft: rgba(217, 178, 124, 0.35);
+    --grad: linear-gradient(135deg, #e6c18d, #b08a5e);
+}
+
+body.home-page {
+    background: var(--ink);
+}
+
+/* ---------- Navigation ---------- */
+header {
+    border-bottom: 3px solid var(--bronze);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--bronze-deep);
+}
+
+.nav-links a::after {
+    background: var(--bronze);
+}
+
+/* ---------- Buttons ---------- */
+.btn,
+.button {
+    background: var(--grad);
+    color: #111111;
+    box-shadow: 0 10px 28px rgba(168, 130, 90, 0.35);
+}
+
+.btn:hover,
+.button:hover {
+    background: linear-gradient(135deg, #f0cf9f, #bf996a);
+    box-shadow: 0 14px 34px rgba(217, 178, 124, 0.45);
+}
+
+/* ---------- Labels ---------- */
+.home-page section .small-title {
+    color: var(--bronze-light) !important;
+}
+
+.home-page #programs .small-title,
+.home-page #departments .small-title,
+.home-page #resources .small-title {
+    color: var(--bronze-deep) !important;
+}
+
+.small-title::before {
+    background: var(--bronze);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    background-color: var(--ink);
+}
+
+.hero-overlay {
+    background:
+        radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.16), transparent 42%),
+        radial-gradient(circle at 8% 100%, rgba(217, 178, 124, 0.22), transparent 45%),
+        linear-gradient(160deg, rgba(10, 10, 10, 0.78), rgba(34, 34, 34, 0.66));
+    animation: none;
+    filter: none;
+}
+
+/* ---------- Sections: black and light bands ---------- */
+.home-page #about,
+.home-page #events,
+.home-page #leadership,
+.home-page #gallery,
+.home-page #join,
+.home-page #contact,
+.home-page #prayer {
+    color: #f4f4f2;
+}
+
+.home-page #programs,
+.home-page #departments,
+.home-page #resources {
+    color: #111111;
+}
+
+#about {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(255, 255, 255, 0.09), transparent 50%),
+        var(--ink);
+}
+
+#programs {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(168, 130, 90, 0.14), transparent 50%),
+        var(--paper);
+}
+
+#events {
+    background:
+        radial-gradient(circle at 85% 0%, rgba(217, 178, 124, 0.12), transparent 50%),
+        var(--char);
+}
+
+#departments {
+    background:
+        radial-gradient(circle at 5% 100%, rgba(168, 130, 90, 0.14), transparent 50%),
+        var(--mist);
+}
+
+#leadership {
+    background:
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.1), transparent 45%),
+        var(--ink);
+}
+
+#gallery {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(217, 178, 124, 0.1), transparent 50%),
+        var(--char);
+}
+
+#resources {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(168, 130, 90, 0.12), transparent 55%),
+        var(--paper);
+}
+
+#prayer {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(217, 178, 124, 0.14), transparent 55%),
+        var(--char);
+}
+
+#join {
+    background:
+        radial-gradient(circle at 50% 130%, rgba(217, 178, 124, 0.2), transparent 55%),
+        var(--ink);
+}
+
+#contact {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 55%),
+        var(--char);
+}
+
+/* ---------- Black cards on the light sections ---------- */
+#programs .program-card,
+.department-card,
+#resources .program-card {
+    background: linear-gradient(160deg, #222222, #0a0a0a);
+    color: #f4f4f2;
+    border: 1px solid rgba(217, 178, 124, 0.22);
+    border-bottom: 4px solid var(--bronze);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+#programs .program-card:hover,
+.department-card:hover {
+    border-color: var(--bronze-soft);
+    border-bottom-color: var(--bronze);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
+}
+
+#programs .program-card h3,
+.department-card h3,
+#resources .program-card h3 {
+    color: #ffffff;
+}
+
+#programs .program-card p,
+.department-card p,
+#resources .program-card p {
+    color: #cfcfcf;
+}
+
+#programs .program-card strong {
+    color: var(--bronze-light);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+#programs .program-card span {
+    color: var(--silver);
+}
+
+.department-card small {
+    color: var(--bronze-light);
+}
+
+.dept-icon {
+    background: var(--grad);
+    color: #111111;
+    box-shadow: 0 0 0 6px rgba(217, 178, 124, 0.18);
+}
+
+/* ---------- Leadership: white cards on black ---------- */
+.leader-card {
+    background: #ffffff;
+    color: #111111;
+    border-top: 4px solid var(--bronze);
+}
+
+.leader-card h3 {
+    color: #111111;
+}
+
+.leader-card p {
+    color: var(--bronze-deep);
+    font-weight: 700;
+}
+
+/* ---------- Events and upcoming ---------- */
+.event-card {
+    color: #f4f4f2;
+    border-top: 0;
+}
+
+.event-card h3 {
+    color: #ffffff;
+}
+
+.upcoming-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--bronze-soft);
+    color: #f4f4f2;
+}
+
+.upcoming-card i {
+    color: var(--bronze-light);
+}
+
+.coming-soon {
+    background: var(--grad);
+    color: #111111;
+}
+
+.upcoming-note {
+    color: #cfcfcf;
+}
+
+/* ---------- Contact and footer ---------- */
+#contact .enquiry-person {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--bronze-soft);
+}
+
+#contact .enquiry-person a {
+    color: var(--bronze-light);
+}
+
+footer {
+    background: #000000;
+    border-top: 3px solid var(--bronze);
+}
+
+/* ---------- Welcome pop-ups ---------- */
+.welcome-overlay {
+    background: rgba(0, 0, 0, 0.84);
+}
+
+.welcome-box,
+.welcome-box.love-box {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12), transparent 60%),
+        radial-gradient(circle at 50% 115%, rgba(217, 178, 124, 0.2), transparent 55%),
+        linear-gradient(165deg, #242424, #0a0a0a 72%);
+    border: 1px solid rgba(217, 178, 124, 0.6);
+    border-top: 4px solid var(--bronze-light);
+    box-shadow:
+        0 0 40px rgba(217, 178, 124, 0.22),
+        0 30px 80px rgba(0, 0, 0, 0.65);
+    animation: monoGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes monoGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(217, 178, 124, 0.16), 0 30px 80px rgba(0, 0, 0, 0.65); }
+    50% { box-shadow: 0 0 56px rgba(217, 178, 124, 0.36), 0 30px 80px rgba(0, 0, 0, 0.65); }
+}
+
+.welcome-icon {
+    background: var(--grad);
+    color: #111111;
+    box-shadow: 0 0 0 7px rgba(217, 178, 124, 0.2), 0 0 28px rgba(217, 178, 124, 0.45);
+}
+
+.welcome-small,
+.welcome-link,
+.love-ref {
+    color: var(--bronze-light);
+}
+
+.welcome-box h2 {
+    text-shadow: 0 0 22px rgba(255, 255, 255, 0.25);
+}
+
+.welcome-text,
+.love-verse {
+    color: #e8e8e8;
+}
+
+.welcome-times {
+    color: var(--bronze-light);
+    border-color: var(--bronze-soft);
+}
+
+.love-heart {
+    color: #e6c18d;
+    filter: drop-shadow(0 0 18px rgba(217, 178, 124, 0.8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .welcome-box,
+    .welcome-box.love-box {
+        animation: none;
+    }
+}
+
+/* ---------- Avatar chat (its styles load later, so these start with "body") ---------- */
+body .bcfa-panel {
+    background: linear-gradient(165deg, #242424, #0a0a0a 75%);
+    border: 1px solid rgba(217, 178, 124, 0.55);
+    border-top: 4px solid var(--bronze-light);
+    box-shadow: 0 0 40px rgba(217, 178, 124, 0.16), 0 24px 70px rgba(0, 0, 0, 0.65);
+}
+
+body .bcfa-bubble {
+    background: linear-gradient(165deg, #242424, #0a0a0a);
+    border: 1px solid rgba(217, 178, 124, 0.6);
+}
+
+body .bcfa-avatar {
+    background: linear-gradient(160deg, #3a3a3a, #111111);
+    border: 2px solid var(--bronze-light);
+    box-shadow: 0 0 0 4px rgba(217, 178, 124, 0.18);
+}
+
+body .bcfa-title span {
+    color: #bdbdbd;
+}
+
+body .bcfa-me,
+body .bcfa-link,
+body .bcfa-send {
+    background: var(--grad);
+    color: #111111;
+}
+
+body .bcfa-chip {
+    color: var(--bronze-light);
+    border-color: rgba(217, 178, 124, 0.55);
+}
+
+body .bcfa-chip:hover {
+    background: rgba(217, 178, 124, 0.18);
+}
+
+body .bcfa-input:focus {
+    border-color: var(--bronze-light);
+}
+
+/* ==========================================
+   SWEEP: remaining spots brought into the same palette
+========================================== */
+
+/* Social icons: one calm style instead of green / pink / red */
+.social-links a {
+    color: #f4f4f2;
+}
+
+.social-links .whatsapp i,
+.social-links .instagram i,
+.social-links .tiktok i,
+.social-links .youtube i {
+    color: var(--bronze-light);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(217, 178, 124, 0.45);
+}
+
+.social-links .whatsapp:hover i,
+.social-links .instagram:hover i,
+.social-links .tiktok:hover i,
+.social-links .youtube:hover i {
+    background: var(--grad);
+    color: #111111;
+    border-color: transparent;
+}
+
+/* Avatar glow behind the standing figure */
+body .bcfa-fab.bcfa-full::before {
+    background: radial-gradient(circle, rgba(217, 178, 124, 0.38), transparent 70%);
+}
+
+/* Browser details */
+::selection {
+    background: var(--bronze);
+    color: #111111;
+}
+
+html {
+    scrollbar-color: #6b6b6b #0a0a0a;
+}
+
+/* Hero scroll hint and menu button */
+.hero-scroll {
+    color: #d8d8d8;
+}
+
+.menu-toggle {
+    color: #111111;
+}
+
+/* ==========================================
+   GREY PASS: nothing is pure white any more.
+   The grey of the logo (#a2a2a2) replaces white and off-white
+   surfaces, and white text becomes soft light grey.
+========================================== */
+
+:root {
+    --logo-grey: #a2a2a2;
+    --grey-band: #b4b4b4;
+    --card-grey: #cfcfcf;
+    --text-head: #ececec;
+    --text-body: #d6d6d6;
+    --text-soft: #b9b9b9;
+}
+
+/* ---------- Navigation: exactly the logo's grey, so the logo blends in ---------- */
+header {
+    background: var(--logo-grey);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+.nav-links a,
+.menu-toggle {
+    color: #111111;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #4a3a26;
+}
+
+@media (max-width: 1000px) {
+    .nav-links {
+        background: var(--logo-grey);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links a {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* ---------- Light bands become grey (text on them stays dark) ---------- */
+#programs {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(168, 130, 90, 0.16), transparent 50%),
+        var(--grey-band);
+}
+
+#departments {
+    background:
+        radial-gradient(circle at 5% 100%, rgba(168, 130, 90, 0.16), transparent 50%),
+        var(--logo-grey);
+}
+
+#resources {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(168, 130, 90, 0.14), transparent 55%),
+        var(--grey-band);
+}
+
+.home-page #programs .small-title,
+.home-page #departments .small-title,
+.home-page #resources .small-title {
+    color: #1a1a1a !important;
+}
+
+/* ---------- Leadership cards: grey instead of white ---------- */
+.leader-card {
+    background: var(--card-grey);
+    color: #111111;
+}
+
+.leader-card h3 {
+    color: #111111;
+}
+
+.leader-card p {
+    color: #5a4328;
+}
+
+/* ---------- Text that was white becomes light grey ---------- */
+.home-page #about,
+.home-page #events,
+.home-page #leadership,
+.home-page #gallery,
+.home-page #join,
+.home-page #contact,
+.home-page #prayer {
+    color: var(--text-body);
+}
+
+.home-page #about .section-heading h2,
+.home-page #events .section-heading h2,
+.home-page #leadership .section-heading h2,
+.home-page #gallery .section-heading h2,
+.home-page #join .section-heading h2,
+.home-page #contact .section-heading h2,
+.home-page #prayer .section-heading h2,
+.event-card h3 {
+    color: var(--text-head);
+}
+
+.home-page .hero,
+.home-page .hero h1 {
+    color: var(--text-head);
+}
+
+.hero-text {
+    color: var(--text-body);
+}
+
+#programs .program-card h3,
+.department-card h3,
+#resources .program-card h3 {
+    color: var(--text-head);
+}
+
+#programs .program-card p,
+.department-card p,
+#resources .program-card p,
+.upcoming-note {
+    color: var(--text-body);
+}
+
+#programs .program-card span {
+    color: var(--text-soft);
+}
+
+.event-card,
+.upcoming-card,
+.social-links a {
+    color: var(--text-body);
+}
+
+footer {
+    color: var(--text-body);
+}
+
+footer h3 {
+    color: var(--text-head);
+}
+
+/* ---------- Pop-ups ---------- */
+.welcome-box,
+.welcome-box.love-box {
+    color: var(--text-body);
+}
+
+.welcome-box h2,
+.love-box .love-title {
+    color: var(--text-head);
+    text-shadow: 0 0 22px rgba(217, 178, 124, 0.25);
+}
+
+.welcome-text,
+.love-verse {
+    color: var(--text-body);
+}
+
+.welcome-close {
+    color: var(--text-head);
+}
+
+/* ---------- Avatar chat ---------- */
+body .bcfa-panel {
+    color: var(--text-body);
+}
+
+body .bcfa-title strong {
+    color: var(--text-head);
+}
+
+body .bcfa-bot {
+    color: #e0e0e0;
+}
+
+body .bcfa-bubble {
+    color: var(--text-head);
+}
+
+body .bcfa-x {
+    color: var(--text-head);
+}
+
+body .bcfa-input {
+    color: #e6e6e6;
+}
+
+/* ---------- Other pages' headings that were white ---------- */
+.sermons-page .section-heading,
+.sermons-page .section-heading .small-title,
+.sermons-page .section-heading h1,
+.sermons-page .section-heading p {
+    color: var(--text-head);
+}
+
+/* ==========================================
+   BLUE PASS: royal and sky blue added next to the bronze,
+   on top of the black, grey and bronze palette.
+========================================== */
+
+:root {
+    --blue: #2f6bff;
+    --blue-mid: #4f8dff;
+    --blue-light: #8ab8ff;
+    --blue-deep: #1d3f9e;
+    --navy: #07122e;
+    --navy-mid: #0d2a6b;
+    --blue-glow: rgba(79, 141, 255, 0.35);
+    --blue-grad: linear-gradient(135deg, #4f8dff, #2350d9);
+    --edge-grad: linear-gradient(90deg, #2f6bff, #d9b27c);
+}
+
+/* ---------- Navigation and footer lines ---------- */
+header {
+    border-bottom: 3px solid transparent;
+    border-image: var(--edge-grad) 1;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--blue-deep);
+}
+
+.nav-links a::after {
+    background: var(--blue);
+}
+
+footer {
+    border-top: 3px solid transparent;
+    border-image: var(--edge-grad) 1;
+}
+
+/* ---------- Small labels ---------- */
+.small-title::before {
+    background: var(--edge-grad);
+}
+
+.home-page section .small-title {
+    color: var(--blue-light) !important;
+}
+
+.home-page .hero .small-title {
+    color: var(--bronze-light) !important;
+}
+
+.home-page #programs .small-title,
+.home-page #departments .small-title,
+.home-page #resources .small-title {
+    color: var(--navy-mid) !important;
+}
+
+/* ---------- Headings on the dark sections fade from grey to blue ---------- */
+.home-page #about .section-heading h2,
+.home-page #events .section-heading h2,
+.home-page #leadership .section-heading h2,
+.home-page #gallery .section-heading h2,
+.home-page #join .section-heading h2,
+.home-page #contact .section-heading h2,
+.home-page #prayer .section-heading h2 {
+    display: inline-block;
+    background: linear-gradient(90deg, #ececec 45%, var(--blue-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- Hero ---------- */
+.hero-overlay {
+    background:
+        radial-gradient(circle at 84% 12%, rgba(79, 141, 255, 0.5), transparent 46%),
+        radial-gradient(circle at 6% 100%, rgba(217, 178, 124, 0.22), transparent 45%),
+        linear-gradient(160deg, rgba(5, 11, 31, 0.82), rgba(20, 24, 40, 0.66));
+}
+
+/* ---------- Section backgrounds ---------- */
+#about {
+    background:
+        radial-gradient(circle at 12% 0%, rgba(79, 141, 255, 0.2), transparent 50%),
+        var(--ink);
+}
+
+#events {
+    background:
+        radial-gradient(circle at 85% 0%, rgba(79, 141, 255, 0.22), transparent 50%),
+        linear-gradient(160deg, #0b1f4d, #050b1f);
+}
+
+#leadership {
+    background:
+        radial-gradient(circle at 80% 0%, rgba(138, 184, 255, 0.25), transparent 50%),
+        linear-gradient(135deg, #123a96, #07122e);
+}
+
+#gallery {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(79, 141, 255, 0.18), transparent 50%),
+        var(--char);
+}
+
+#prayer {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79, 141, 255, 0.22), transparent 55%),
+        linear-gradient(160deg, #0b1f4d, #050b1f);
+}
+
+#join {
+    background:
+        radial-gradient(circle at 50% 130%, rgba(217, 178, 124, 0.22), transparent 55%),
+        linear-gradient(135deg, #0d2f7a, #050b1f);
+}
+
+#contact {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79, 141, 255, 0.18), transparent 55%),
+        var(--char);
+}
+
+#programs {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(47, 107, 255, 0.2), transparent 50%),
+        var(--grey-band);
+}
+
+#departments {
+    background:
+        radial-gradient(circle at 5% 100%, rgba(47, 107, 255, 0.2), transparent 50%),
+        var(--logo-grey);
+}
+
+#resources {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(47, 107, 255, 0.18), transparent 55%),
+        var(--grey-band);
+}
+
+/* ---------- Cards ---------- */
+#programs .program-card,
+.department-card,
+#resources .program-card {
+    border: 1px solid rgba(138, 184, 255, 0.28);
+    border-bottom: 4px solid var(--blue);
+}
+
+#programs .program-card:hover,
+.department-card:hover,
+#resources .program-card:hover {
+    border-color: rgba(138, 184, 255, 0.5);
+    border-bottom-color: var(--blue-mid);
+    box-shadow: 0 20px 44px var(--blue-glow);
+}
+
+#programs .program-card strong {
+    color: var(--blue-light);
+}
+
+.department-card small {
+    color: var(--blue-light);
+}
+
+.dept-icon {
+    box-shadow: 0 0 0 6px rgba(47, 107, 255, 0.28);
+}
+
+.leader-card {
+    border-top: 4px solid var(--blue);
+}
+
+.leader-card p {
+    color: var(--blue-deep);
+}
+
+.event-card {
+    border-top: 3px solid var(--blue);
+}
+
+.upcoming-card {
+    border-color: rgba(138, 184, 255, 0.5);
+}
+
+.upcoming-card i {
+    color: var(--blue-light);
+}
+
+.coming-soon {
+    background: var(--blue-grad);
+    color: #e6e6e6;
+}
+
+#contact .enquiry-person {
+    border-color: rgba(138, 184, 255, 0.4);
+}
+
+#contact .enquiry-person a {
+    color: var(--blue-light);
+}
+
+/* ---------- Social icons ---------- */
+.social-links .whatsapp i,
+.social-links .instagram i,
+.social-links .tiktok i,
+.social-links .youtube i {
+    color: var(--blue-light);
+    border: 1px solid rgba(138, 184, 255, 0.5);
+}
+
+.social-links .whatsapp:hover i,
+.social-links .instagram:hover i,
+.social-links .tiktok:hover i,
+.social-links .youtube:hover i {
+    background: var(--blue-grad);
+    color: #ececec;
+    border-color: transparent;
+}
+
+/* ---------- Pop-ups ---------- */
+.welcome-box,
+.welcome-box.love-box {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(79, 141, 255, 0.3), transparent 60%),
+        radial-gradient(circle at 50% 115%, rgba(217, 178, 124, 0.18), transparent 55%),
+        linear-gradient(165deg, #10224f, #05080f 72%);
+    border: 1px solid rgba(138, 184, 255, 0.55);
+    border-top: 4px solid var(--blue-mid);
+    animation: blueGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes blueGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(79, 141, 255, 0.28), 0 0 70px rgba(217, 178, 124, 0.1), 0 30px 80px rgba(0, 0, 0, 0.65); }
+    50% { box-shadow: 0 0 56px rgba(79, 141, 255, 0.5), 0 0 100px rgba(217, 178, 124, 0.2), 0 30px 80px rgba(0, 0, 0, 0.65); }
+}
+
+.welcome-times {
+    border-color: rgba(138, 184, 255, 0.5);
+}
+
+.welcome-small,
+.welcome-link,
+.love-ref {
+    color: var(--blue-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .welcome-box,
+    .welcome-box.love-box {
+        animation: none;
+    }
+}
+
+/* ---------- Avatar chat ---------- */
+body .bcfa-panel {
+    background: linear-gradient(165deg, #10224f, #05080f 75%);
+    border: 1px solid rgba(138, 184, 255, 0.55);
+    border-top: 4px solid var(--blue-mid);
+    box-shadow: 0 0 40px rgba(79, 141, 255, 0.28), 0 24px 70px rgba(0, 0, 0, 0.65);
+}
+
+body .bcfa-bubble {
+    background: linear-gradient(165deg, #10224f, #05080f);
+    border: 1px solid rgba(138, 184, 255, 0.6);
+}
+
+body .bcfa-avatar {
+    border: 2px solid var(--blue-light);
+    box-shadow: 0 0 0 4px rgba(79, 141, 255, 0.25);
+}
+
+body .bcfa-chip {
+    color: var(--blue-light);
+    border-color: rgba(138, 184, 255, 0.5);
+}
+
+body .bcfa-chip:hover {
+    background: rgba(79, 141, 255, 0.22);
+}
+
+body .bcfa-input:focus {
+    border-color: var(--blue-mid);
+}
+
+body .bcfa-fab.bcfa-full::before {
+    background: radial-gradient(circle, rgba(79, 141, 255, 0.4), transparent 70%);
+}
+
+/* ---------- Browser details ---------- */
+::selection {
+    background: var(--blue);
+    color: #ececec;
+}
+
+html {
+    scrollbar-color: #3a5fb8 #0a0a0a;
+}
