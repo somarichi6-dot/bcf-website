@@ -27,10 +27,10 @@
         voiceText: "Hii, I am Virtue. Welcome to Baze Christian Fellowship. Ask me anything.",
         talkAnswers: true,                               // Virtue reads every answer out loud (the speaker button in the chat mutes her)
         voiceName: "Microsoft Zira - English (United States)",
-voicePitch: 2,
-voiceFallbackPitch: 2,
-voiceRate: 1,                                  // speed: 1 = normal, a little faster sounds younger
-        voiceFallbackPitch: 2,                           // same idea, used when the device only has a male voice
+voicePitch: 1.35,
+voiceFallbackPitch: 1.35,
+voiceRate: 1.1,                         // same idea, used when the device only has a male voice
+        voicePitchMobile: 1.4,                           // PHONES AND TABLETS use this one instead (they usually sound higher, so keep it lower)
         voiceFilePitch: 1,                               // for a recording: 1 = as recorded, 1.25 = higher, cuter, a bit faster
         bubbleFirstDelay: 1500,                          // ms after the pop-ups close
         bubbleEvery: 18000,                              // ms between each "hii"
@@ -676,6 +676,7 @@ voiceRate: 1,                                  // speed: 1 = normal, a little fa
         } catch (e) {}
 
         function pickFemaleVoice() {
+            if (!voiceList.length) loadVoices();
             if (CONFIG.voiceName) {
                 var wanted = String(CONFIG.voiceName).toLowerCase();
                 for (var k = 0; k < voiceList.length; k++) {
@@ -709,14 +710,23 @@ voiceRate: 1,                                  // speed: 1 = normal, a little fa
                 var u = new SpeechSynthesisUtterance(words);
                 var v = pickFemaleVoice();
                 if (v) { u.voice = v; u.lang = v.lang; }
-                u.pitch = v ? CONFIG.voicePitch : Math.min(Math.max(CONFIG.voiceFallbackPitch, CONFIG.voicePitch), 2);   // no female voice found: raise the pitch
+                var ua = (typeof navigator !== "undefined" && navigator.userAgent) || "";
+                var onPhone = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+                if (onPhone) {
+                    u.pitch = CONFIG.voicePitchMobile;              // phones and tablets
+                } else {
+                    u.pitch = v ? CONFIG.voicePitch : Math.min(Math.max(CONFIG.voiceFallbackPitch, CONFIG.voicePitch), 2);   // computers
+                }
                 u.rate = CONFIG.voiceRate || 1;
                 u.volume = 0.9;
                 var token = ++talkToken;
                 u.onstart = function () { fab.classList.add("bcfa-talk"); };
                 u.onend = function () { stopTalking(token); };
                 u.onerror = function () { stopTalking(token); };
-                window.speechSynthesis.speak(u);
+                setTimeout(function () {
+                    try { if (window.speechSynthesis.resume) window.speechSynthesis.resume(); } catch (e) {}
+                    try { window.speechSynthesis.speak(u); } catch (e) {}
+                }, 80);
                 setTimeout(function () { stopTalking(token); }, Math.min(String(words).length * 110 + 2500, 30000));   // safety
             } catch (e) {}
         }
@@ -765,6 +775,25 @@ voiceRate: 1,                                  // speed: 1 = normal, a little fa
             if (!activated) { pendingVoice = true; return; }   // browsers only allow sound after a tap
             speakNow();
         }
+
+        // Type  bcfaVoiceCheck()  in the browser console to see why she is silent (and hear a test)
+        window.bcfaVoiceCheck = function () {
+            loadVoices();
+            var v = pickFemaleVoice();
+            var info = {
+                speechSupported: !!(window.speechSynthesis && window.SpeechSynthesisUtterance),
+                voicesFound: voiceList.length,
+                chosenVoice: v ? v.name : "(none: the device default is used, with a high pitch)",
+                muted: muted,
+                tappedThePageYet: activated,
+                voiceOn: !!CONFIG.voice,
+                answersSpoken: !!CONFIG.talkAnswers,
+                recordingFile: CONFIG.voiceFile || "(none)"
+            };
+            if (window.console && console.log) console.log("Voice check:", info);
+            speakWithBrowserVoice("Hii, I am " + CONFIG.name + ". Can you hear me?");
+            return info;
+        };
 
         var sndBtn = panel.querySelector(".bcfa-snd");
         function showMuted() {

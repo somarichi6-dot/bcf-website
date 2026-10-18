@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtue voice test</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e4e4e4;
+            padding: 24px 18px 60px;
+            line-height: 1.5;
+        }
+        main { max-width: 560px; margin: 0 auto; }
+        h1 { font-size: 26px; margin-bottom: 6px; }
+        .lead { color: #b9b9b9; margin-bottom: 26px; font-size: 15px; }
+        label { display: block; font-weight: 700; margin: 20px 0 8px; font-size: 14px; letter-spacing: 0.5px; }
+        textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #1b1b1b;
+            color: #f0f0f0;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        textarea { min-height: 84px; resize: vertical; }
+        input[type="range"] { width: 100%; accent-color: #d9b27c; }
+        .row { display: flex; justify-content: space-between; font-size: 13px; color: #b9b9b9; }
+        .val { color: #d9b27c; font-weight: 700; }
+        .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        button {
+            padding: 12px 20px;
+            border: 0;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #111;
+            background: linear-gradient(135deg, #e6c18d, #b08a5e);
+        }
+        button.ghost { background: transparent; color: #d9b27c; border: 1px solid #b08a5e; }
+        .check { display: flex; gap: 10px; align-items: center; margin-top: 14px; font-size: 14px; color: #cfcfcf; }
+        .check input { width: 18px; height: 18px; }
+        pre {
+            margin-top: 8px;
+            padding: 14px;
+            border-radius: 10px;
+            background: #151515;
+            border: 1px solid #333;
+            color: #f0d9b5;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .note { margin-top: 26px; font-size: 14px; color: #b9b9b9; }
+        .note li { margin-left: 18px; margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Virtue voice test</h1>
+    <p class="lead">Try the voices on this device, pick the one you like, and copy the settings into <strong>avatar.js</strong>.</p>
+
+    <label for="words">What should she say?</label>
+    <textarea id="words">Hii, I am Virtue. Welcome to Baze Christian Fellowship. Ask me anything.</textarea>
+
+    <label for="voice">Voice</label>
+    <select id="voice"></select>
+    <div class="check">
+        <input type="checkbox" id="allVoices">
+        <span>Show every voice, not just the English ones</span>
+    </div>
+
+    <label for="pitch">Pitch <span class="val" id="pitchVal"></span></label>
+    <input type="range" id="pitch" min="0.5" max="2" step="0.05" value="2">
+    <div class="row"><span>deeper</span><span>very high and cute</span></div>
+
+    <label for="rate">Speed <span class="val" id="rateVal"></span></label>
+    <input type="range" id="rate" min="0.6" max="1.6" step="0.05" value="1.1">
+    <div class="row"><span>slower</span><span>faster</span></div>
+
+    <div class="buttons">
+        <button type="button" id="speak">Speak</button>
+        <button type="button" class="ghost" id="stop">Stop</button>
+    </div>
+    <div class="buttons">
+        <button type="button" class="ghost" data-pitch="2" data-rate="1.12">Baby</button>
+        <button type="button" class="ghost" data-pitch="1.5" data-rate="1.05">Girlish</button>
+        <button type="button" class="ghost" data-pitch="1.1" data-rate="1">Natural</button>
+    </div>
+
+    <label>Copy this into the settings at the top of avatar.js (phone and computer have separate lines)</label>
+    <pre id="out"></pre>
+
+    <ul class="note">
+        <li>Every phone and computer has different voices. A voice that sounds good here sounds the same on your own device only.</li>
+        <li>If every voice sounds like a man, that device only has male voices. Try a different phone or browser, or use a recording of a real girl's voice (see the instructions in the chat).</li>
+        <li>Some phones ignore the pitch setting for some voices. If the slider changes nothing, choose a different voice.</li>
+    </ul>
+</main>
+
+<script>
+    var wordsBox = document.getElementById("words");
+    var voiceSel = document.getElementById("voice");
+    var allBox = document.getElementById("allVoices");
+    var pitch = document.getElementById("pitch");
+    var rate = document.getElementById("rate");
+    var out = document.getElementById("out");
+    var voices = [];
+
+    var FEMALE = /ezinne|female|aria|jenny|zira|sonia|libby|hazel|susan|samantha|karen|tessa|moira|fiona|victoria|serena|allison|joanna|kendra|salli|emma|amy|nicole|google us english/i;
+    var MALE = /\b(david|mark|james|guy|george|daniel|fred|abeo|ryan|thomas|oliver|male)\b/i;
+
+    function loadVoices() {
+        voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+        var keepName = voiceSel.value;
+        voiceSel.innerHTML = "";
+
+        var list = voices.filter(function (v) { return allBox.checked || /^en/i.test(v.lang); });
+        list.sort(function (a, b) {
+            var sa = (FEMALE.test(a.name) ? 2 : 0) - (MALE.test(a.name) ? 3 : 0);
+            var sb = (FEMALE.test(b.name) ? 2 : 0) - (MALE.test(b.name) ? 3 : 0);
+            return sb - sa;
+        });
+
+        if (!list.length) {
+            var none = document.createElement("option");
+            none.textContent = "No voices found on this device";
+            none.value = "";
+            voiceSel.appendChild(none);
+        }
+        list.forEach(function (v) {
+            var o = document.createElement("option");
+            o.value = v.name;
+            o.textContent = v.name + " (" + v.lang + ")" + (FEMALE.test(v.name) && !MALE.test(v.name) ? "  - sounds female" : "");
+            voiceSel.appendChild(o);
+        });
+        if (keepName) voiceSel.value = keepName;
+        showSettings();
+    }
+
+    function showSettings() {
+        document.getElementById("pitchVal").textContent = pitch.value;
+        document.getElementById("rateVal").textContent = rate.value;
+        var name = voiceSel.value ? voiceSel.value.replace(/"/g, "") : "";
+        var onPhone = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || "");
+        if (onPhone) {
+            out.textContent =
+                "You are testing on a PHONE, so copy this line:\n\n" +
+                "voicePitchMobile: " + pitch.value + ",\n" +
+                "voiceRate: " + rate.value + ",";
+        } else {
+            out.textContent =
+                "You are testing on a COMPUTER, so copy these lines:\n\n" +
+                'voiceName: "' + name + '",\n' +
+                "voicePitch: " + pitch.value + ",\n" +
+                "voiceFallbackPitch: " + pitch.value + ",\n" +
+                "voiceRate: " + rate.value + ",";
+        }
+    }
+
+    function speak() {
+        if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+            out.textContent = "This browser cannot speak. Try Chrome or Safari.";
+            return;
+        }
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(wordsBox.value || "Hii, I am Virtue.");
+        for (var i = 0; i < voices.length; i++) {
+            if (voices[i].name === voiceSel.value) { u.voice = voices[i]; u.lang = voices[i].lang; break; }
+        }
+        u.pitch = parseFloat(pitch.value);
+        u.rate = parseFloat(rate.value);
+        u.volume = 1;
+        window.speechSynthesis.speak(u);
+    }
+
+    document.getElementById("speak").addEventListener("click", speak);
+    document.getElementById("stop").addEventListener("click", function () {
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+    });
+    [pitch, rate, voiceSel].forEach(function (el) { el.addEventListener("input", showSettings); });
+    allBox.addEventListener("change", loadVoices);
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pitch]"), function (b) {
+        b.addEventListener("click", function () {
+            pitch.value = b.getAttribute("data-pitch");
+            rate.value = b.getAttribute("data-rate");
+            showSettings();
+            speak();
+        });
+    });
+
+    if (window.speechSynthesis) {
+        loadVoices();
+        window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
+    } else {
+        out.textContent = "This browser cannot speak. Try Chrome or Safari.";
+    }
+    showSettings();
+</script>
+</body>
+</html>
